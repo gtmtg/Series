@@ -1,0 +1,8 @@
+*.key
+Pods/
+Series/MyCertificate.h
+Series/MyCertificate.c
+Series/ATKCore.framework
+Series/ATKMath.framework
+Series/ATKMathWidget.bundle
+Series/ATKMathWidget.framework
