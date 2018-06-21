@@ -147,7 +147,7 @@ const NSString *wolframAlphaAppId = @"[API KEY HERE]";
             NSString *insideSigma = [self fixLaTeX:_insideSigma.resultAsLaTeX];
             NSString *query = [NSString stringWithFormat:@"\\sum_{n=%@}^{\\infty} %@", lowerBound, insideSigma];
             NSString *codeCogsURL = [@"http://latex.codecogs.com/png.latex?%5Cdpi%7B300%7D%20" stringByAppendingString:[self urlEncode:query]];
-            NSString *wolframURL = [self urlWithBase:@"http://api.wolframalpha.com/v2/query" andParameters:@{@"input": query, @"appid": wolframAlphaAppId }];
+            NSString *wolframURL = [self urlWithBase:@"http://api.wolframalpha.com/v2/query" andParameters:@{@"input": query, @"appid": wolframAlphaAppId}];
             
             NSLog(@"%@\n", query);
             
@@ -424,7 +424,7 @@ const NSString *wolframAlphaAppId = @"[API KEY HERE]";
         __block bool noSolutions = NO;
         dispatch_semaphore_t solveSemaphore = dispatch_semaphore_create(0);
         
-        NSString *regularRequestURL = [self urlWithBase:@"http://api.wolframalpha.com/v2/query" andParameters:@{@"input": input, @"appid": @"Q927KA-Y4W5V3H4E4", @"mag": @"2"}];
+        NSString *regularRequestURL = [self urlWithBase:@"http://api.wolframalpha.com/v2/query" andParameters:@{@"input": input, @"appid": wolframAlphaAppId, @"mag": @"2"}];
         AFHTTPRequestOperation *regularOperation = [[AFHTTPRequestOperation alloc] initWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:regularRequestURL]]];
         regularOperation.responseSerializer = [AFXMLResponseSerializer new];
         [regularOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -449,7 +449,7 @@ const NSString *wolframAlphaAppId = @"[API KEY HERE]";
         [regularOperation start];
         
         if (forCondition) {
-            NSString *solveRequestURL = [self urlWithBase:@"http://api.wolframalpha.com/v2/query" andParameters:@{@"input": [@"solve" stringByAppendingString:input], @"appid": @"Q927KA-Y4W5V3H4E4", @"mag": @"2"}];
+            NSString *solveRequestURL = [self urlWithBase:@"http://api.wolframalpha.com/v2/query" andParameters:@{@"input": [@"solve" stringByAppendingString:input], @"appid": wolframAlphaAppId, @"mag": @"2"}];
             AFHTTPRequestOperation *solveOperation = [[AFHTTPRequestOperation alloc] initWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:solveRequestURL]]];
             solveOperation.responseSerializer = [AFXMLResponseSerializer new];
             [solveOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
